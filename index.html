@@ -464,7 +464,7 @@
  ]
 }
 </script>
-<script type="application/json" id="places">[{"name": "Покровка", "metro": "Чистые пруды", "street": "ул. Покровка", "x": 24, "y": -18, "img": "r-1", "wk": [9, 24], "we": [9, 26]}, {"name": "Патриаршие", "metro": "Маяковская", "street": "Малая Бронная улица", "x": -30, "y": -32, "img": "r-2", "wk": [9, 24], "we": [9, 26]}, {"name": "Хамовники", "metro": "Фрунзенская", "street": "Комсомольский проспект", "x": -50, "y": 64, "img": "r-3", "wk": [12, 24], "we": [12, 24]}, {"name": "Таганка", "metro": "Таганская", "street": "Таганская площадь", "x": 72, "y": 30, "img": "r-4", "wk": [12, 24], "we": [12, 26]}, {"name": "Белорусская", "metro": "Белорусская", "street": "Лесная улица", "x": -48, "y": -80, "img": "r-1", "wk": [12, 24], "we": [12, 24]}, {"name": "Сокол", "metro": "Сокол", "street": "Ленинградский проспект", "x": -104, "y": -142, "img": "r-2", "wk": [12, 23], "we": [12, 24]}, {"name": "Москва-Сити", "metro": "Деловой центр", "street": "Пресненская набережная", "x": -122, "y": 6, "img": "r-3", "wk": [12, 24], "we": [12, 26]}, {"name": "Парк Горького", "metro": "Октябрьская", "street": "Крымский Вал", "x": 6, "y": 72, "img": "r-4", "wk": [12, 24], "we": [12, 26]}]</script>
+<script type="application/json" id="placesData">[{"name": "Покровка", "metro": "Чистые пруды", "street": "ул. Покровка", "x": 73.3, "y": 48.9, "img": "r-1", "wk": [9, 24], "we": [9, 26]}, {"name": "Патриаршие", "metro": "Маяковская", "street": "Малая Бронная улица", "x": 53.26, "y": 50.77, "img": "r-2", "wk": [9, 24], "we": [9, 26]}, {"name": "Хамовники", "metro": "Фрунзенская", "street": "Комсомольский проспект", "x": 47.96, "y": 80.11, "img": "r-3", "wk": [12, 24], "we": [12, 24]}, {"name": "Таганка", "metro": "Таганская", "street": "Таганская площадь", "x": 79.7, "y": 70.28, "img": "r-4", "wk": [12, 24], "we": [12, 26]}, {"name": "Белорусская", "metro": "Белорусская", "street": "Лесная улица", "x": 48.78, "y": 39.88, "img": "r-1", "wk": [12, 24], "we": [12, 24]}, {"name": "Сокол", "metro": "Сокол", "street": "Ленинградский проспект", "x": 19.52, "y": 17.01, "img": "r-2", "wk": [12, 23], "we": [12, 24]}, {"name": "Москва-Сити", "metro": "Деловой центр", "street": "Пресненская набережная", "x": 30.22, "y": 62.39, "img": "r-3", "wk": [12, 24], "we": [12, 26]}, {"name": "Парк Горького", "metro": "Октябрьская", "street": "Крымский Вал", "x": 61.39, "y": 78.73, "img": "r-4", "wk": [12, 24], "we": [12, 26]}]</script>
 <style>
 @font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-xc-500-900-cyrillic.woff2") format("woff2");font-weight:500 900;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-xc-500-900-latin-ext.woff2") format("woff2");font-weight:500 900;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -499,11 +499,11 @@ button,input,select,textarea{font:inherit; color:inherit}
 .skip:focus{top:1rem}
 .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--gut)}
 .disp{font-family:var(--fd); font-weight:800; text-transform:uppercase; letter-spacing:-.005em; line-height:.86}
-h2{font-family:var(--fd); font-weight:800; text-transform:uppercase; line-height:.9; font-size:clamp(3rem, 5.2vw + 1rem, 6.5rem); letter-spacing:-.005em}
+h2{font-family:var(--fd); font-weight:800; text-transform:uppercase; line-height:.9; font-size:clamp(2.3rem, 2.6vw + 1rem, 4.2rem); letter-spacing:-.005em}
 h3{font-weight:600; font-size:1.25rem; line-height:1.2}
-.sub{color:var(--ash-2); max-width:42ch; margin-top:1.25rem; font-size:1.15rem}
-.sec{padding:9rem 0}
-.sec-head{margin-bottom:4rem}
+.sub{color:var(--ash-2); max-width:44ch; margin-top:1rem; font-size:1.05rem}
+.sec{padding:6rem 0}
+.sec-head{margin-bottom:2.75rem}
 .num{font-variant-numeric:tabular-nums}
 
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:3.4rem; padding:0 1.6rem; border-radius:var(--r); border:1px solid transparent; font-weight:600; font-size:1rem; letter-spacing:.005em; white-space:nowrap; cursor:pointer; transition:transform .16s var(--snap), background-color .25s var(--snap), border-color .25s var(--snap), color .25s var(--snap)}
@@ -529,7 +529,7 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .burger span:first-child{top:1.05rem} .burger span:last-child{top:1.55rem}
 .burger[aria-expanded="true"] span:first-child{transform:translateY(.25rem) rotate(45deg)}
 .burger[aria-expanded="true"] span:last-child{transform:translateY(-.25rem) rotate(-45deg)}
-.menu{position:fixed; inset:var(--nav-h) 0 auto; z-index:59; background:var(--bg); border-bottom:1px solid var(--line); padding:1rem var(--gut) 1.5rem; display:grid; opacity:0; transform:translateY(-.5rem); pointer-events:none; transition:opacity .2s var(--snap), transform .25s var(--snap)}
+.menu{position:fixed; inset:var(--nav-h) 0 0; z-index:59; background:var(--bg); padding:1rem var(--gut) 1.5rem; display:grid; align-content:start; overflow-y:auto; opacity:0; transform:translateY(-.5rem); pointer-events:none; transition:opacity .2s var(--snap), transform .25s var(--snap)}
 .menu.open{opacity:1; transform:none; pointer-events:auto}
 .menu a{padding:.8rem 0; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:2rem; border-bottom:1px solid var(--line)}
 .menu .btn{margin-top:1rem; font-family:var(--fb); text-transform:none; font-size:1rem; font-weight:600}
@@ -543,14 +543,16 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .hero::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(17,15,13,.55) 0%, rgba(17,15,13,0) 30%, rgba(17,15,13,.15) 55%, rgba(17,15,13,.92) 100%), linear-gradient(90deg, rgba(17,15,13,.5), rgba(17,15,13,0) 60%)}
 .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none}
 .hero-in{width:100%; padding:0 var(--gut) 3.5rem; display:grid; grid-template-columns:1fr auto; align-items:end; gap:2rem}
-.hero h1{font-size:clamp(4.2rem, 8.4vw, 11.5rem); max-width:12.5ch}
+.hero h1{font-size:clamp(3.2rem, 6vw, 8rem); max-width:12.5ch; animation:heroIn .7s var(--ease) both}
 .hero-side{max-width:24rem; padding-bottom:.8rem}
 .hero-side p{color:var(--ash-2); font-size:1.125rem}
 .hero-cta{display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.75rem}
-@media (max-width:899px){.hero-in{grid-template-columns:1fr; gap:1.5rem; padding-bottom:2rem} .hero h1{font-size:clamp(3.6rem, 17vw, 6.5rem)}}
+@media (max-width:899px){.hero-in{grid-template-columns:1fr; gap:1.25rem; padding-bottom:2rem} .hero h1{font-size:clamp(2.9rem, 13vw, 4.8rem)}}
+.hero-side{animation:heroIn .7s .08s var(--ease) both}
+@keyframes heroIn{from{transform:translateY(1rem)}to{transform:none}}
 
-.manifest{padding:10rem 0 8rem}
-.manifest p{font-size:clamp(1.8rem, 2.5vw + .6rem, 3.1rem); line-height:1.18; letter-spacing:-.02em; font-weight:500; max-width:26ch}
+.manifest{padding:6.5rem 0 5rem}
+.manifest p{font-size:clamp(1.45rem, 1.6vw + .6rem, 2.3rem); line-height:1.22; letter-spacing:-.015em; font-weight:500; max-width:32ch}
 .manifest .w{display:inline}
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion:no-preference){
@@ -558,22 +560,22 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
   }
 }
 @keyframes lit{from{opacity:.16}to{opacity:1}}
-.facts{display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:6rem; padding-top:2rem; border-top:1px solid var(--line)}
-.facts b{display:block; font-family:var(--fd); font-weight:800; font-size:clamp(3.5rem, 5vw, 6rem); line-height:.9; color:var(--ember)}
+.facts{display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3.5rem; padding-top:1.75rem; border-top:1px solid var(--line)}
+.facts b{display:block; font-family:var(--fd); font-weight:800; font-size:clamp(2.6rem, 3.4vw, 4rem); line-height:.9; color:var(--ember)}
 .facts span{display:block; margin-top:.75rem; color:var(--ash-2); max-width:22ch}
 @media (max-width:767px){.facts{grid-template-columns:1fr; gap:1.75rem; margin-top:4rem} .manifest{padding:6rem 0 4rem}}
 
 .menu-list{border-top:1px solid var(--line); position:relative}
-.dish{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto; align-items:center; gap:2rem; padding:1.6rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
-.dish h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(2.2rem, 3vw + .5rem, 3.8rem); line-height:.95; transition:color .25s var(--snap), transform .3s var(--snap)}
+.dish{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto; align-items:center; gap:2rem; padding:1.1rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
+.dish h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(1.7rem, 1.7vw + .6rem, 2.5rem); line-height:.95; transition:color .25s var(--snap), transform .3s var(--snap)}
 .dish p{color:var(--ash-2); max-width:36ch}
-.dish .price{font-family:var(--fd); font-weight:700; font-size:1.9rem; white-space:nowrap}
+.dish .price{font-family:var(--fd); font-weight:700; font-size:1.5rem; white-space:nowrap}
 .dish img.th{display:none}
 @media (hover:hover) and (min-width:900px){
   .menu-list:hover .dish h3{color:rgba(239,233,225,.35)}
   .menu-list .dish:hover h3{color:var(--ash); transform:translateX(.75rem)}
 }
-.peek{position:fixed; left:0; top:0; z-index:40; width:17rem; aspect-ratio:4/5; border-radius:var(--r); overflow:hidden; pointer-events:none; opacity:0; transform:translate3d(-50%,-50%,0) scale(.85); transition:opacity .25s var(--snap); box-shadow:0 2rem 4rem -1rem rgba(0,0,0,.6)}
+.peek{position:fixed; left:0; top:0; z-index:40; width:14rem; aspect-ratio:4/5; border-radius:var(--r); overflow:hidden; pointer-events:none; opacity:0; transform:translate3d(-50%,-50%,0) scale(.85); transition:opacity .25s var(--snap); box-shadow:0 2rem 4rem -1rem rgba(0,0,0,.6)}
 .peek img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .3s var(--snap)}
 .peek img.on{opacity:1}
 .peek.on{opacity:1}
@@ -584,8 +586,8 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
   .dish h3{grid-area:n; font-size:2rem} .dish p{grid-area:d; font-size:.95rem} .dish .price{grid-area:p; font-size:1.5rem}
 }
 
-.kitchen{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:5rem; align-items:center}
-.kitchen figure{border-radius:var(--r); overflow:hidden; aspect-ratio:4/5; background:var(--bg-2)}
+.kitchen{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4rem; align-items:center}
+.kitchen figure{border-radius:var(--r); overflow:hidden; aspect-ratio:1/1; background:var(--bg-2)}
 .kitchen figure img{width:100%; height:100%; object-fit:cover}
 .kitchen ul{margin-top:2.5rem; display:grid; gap:0; border-top:1px solid var(--line)}
 .kitchen li{display:flex; justify-content:space-between; gap:1rem; padding:1rem 0; border-bottom:1px solid var(--line); color:var(--ash-2)}
@@ -594,27 +596,27 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 
 .places{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4rem; align-items:start}
 .map-col{position:sticky; top:calc(var(--nav-h) + 2rem)}
-.map{position:relative; aspect-ratio:1; border-radius:var(--r); background:radial-gradient(70% 70% at 50% 50%, #1e1a16, var(--bg-2)); overflow:hidden}
-.map svg{position:absolute; inset:0; width:100%; height:100%}
-.map .ring{fill:none; stroke:rgba(239,233,225,.13); stroke-width:1.2}
-.map .ring.mkad{stroke:rgba(239,233,225,.2); stroke-dasharray:4 6}
-.map .river{fill:none; stroke:rgba(120,150,170,.35); stroke-width:7; stroke-linecap:round}
-.map .lbl{font-family:var(--fb); font-size:11px; fill:rgba(239,233,225,.4); letter-spacing:.06em}
-.pin{cursor:pointer}
-.pin circle.d{fill:var(--ash); transition:fill .25s var(--snap), transform .35s var(--snap); transform-box:fill-box; transform-origin:center}
-.pin circle.h{fill:var(--ember); opacity:0; transform-box:fill-box; transform-origin:center; transition:opacity .25s, transform .4s var(--snap); transform:scale(.4)}
-.pin.on circle.d{fill:var(--ember); transform:scale(1.35)}
-.pin.on circle.h{opacity:.25; transform:scale(1)}
-.pin:focus-visible{outline:none}
-.pin:focus-visible circle.d{stroke:var(--ash); stroke-width:3}
-.map-card{position:absolute; left:1rem; right:1rem; bottom:1rem; display:grid; grid-template-columns:8.5rem 1fr; gap:1rem; align-items:center; padding:.75rem; border-radius:var(--r); background:rgba(17,15,13,.88); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--line)}
+.map{position:relative; aspect-ratio:1340/1274; border-radius:var(--r); background:#151311; overflow:hidden; border:1px solid var(--line)}
+.map > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.pins{position:absolute; inset:0}
+.pin{position:absolute; width:2.75rem; height:2.75rem; margin:-1.375rem 0 0 -1.375rem; border:0; padding:0; background:transparent; cursor:pointer; display:grid; place-items:center}
+.pin::before{content:""; position:absolute; width:1.9rem; height:1.9rem; border-radius:50%; background:var(--ember); opacity:0; transform:scale(.5); transition:opacity .25s var(--snap), transform .3s var(--snap)}
+.pin i{position:relative; width:.85rem; height:.85rem; border-radius:50%; background:var(--ash); box-shadow:0 0 0 3px rgba(17,15,13,.85); transition:background-color .2s var(--snap), transform .25s var(--snap)}
+.pin.on::before{opacity:.28; transform:none}
+.pin.on i{background:var(--ember); transform:scale(1.2)}
+@media (hover:hover){.pin:hover i{transform:scale(1.2)}}
+.map-attr{position:absolute; right:.5rem; bottom:.4rem; margin:0; font-size:.68rem; color:rgba(239,233,225,.55)}
+.map-attr a{text-decoration:underline}
+.map-card{display:grid; grid-template-columns:7.5rem 1fr auto; gap:1rem; align-items:center; margin-top:.75rem; padding:.6rem; border-radius:var(--r); background:var(--bg-2); border:1px solid var(--line)}
 .map-card img{width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:.3rem}
-.map-card b{display:block; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.6rem; line-height:1}
-.map-card span{display:block; color:var(--ash-2); font-size:.9rem; margin-top:.3rem}
-.place{display:grid; grid-template-columns:1fr auto; gap:.4rem 1.5rem; padding:1.4rem 1rem; margin:0 -1rem; border-bottom:1px solid var(--line); border-radius:var(--r); transition:background-color .25s var(--snap); cursor:pointer}
+.map-card b{display:block; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.35rem; line-height:1}
+.map-card span{display:block; color:var(--ash-2); font-size:.85rem; margin-top:.25rem}
+.map-card a{font-size:.85rem; font-weight:600; color:var(--ember); padding:.5rem .25rem; white-space:nowrap}
+@media (hover:hover){.map-card a:hover{text-decoration:underline; text-underline-offset:.2em}}
+.place{display:grid; grid-template-columns:1fr auto; gap:.3rem 1.5rem; padding:.95rem 1rem; margin:0 -1rem; border-bottom:1px solid var(--line); border-radius:var(--r); transition:background-color .25s var(--snap); cursor:pointer}
 .place:first-child{border-top:1px solid var(--line)}
 .place.on{background:var(--bg-2)}
-.place h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:2rem; line-height:1}
+.place h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.55rem; line-height:1}
 .place .metro{color:var(--ash-2); font-size:.95rem}
 .place .st{grid-column:2; grid-row:1; align-self:center; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:.45rem; white-space:nowrap}
 .place .st::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:#7ad37a}
@@ -622,14 +624,14 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .place .row{grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; color:var(--mut); font-size:.9rem}
 .place .book{grid-column:2; grid-row:2; justify-self:end; font-size:.9rem; font-weight:600; color:var(--ember); background:none; border:0; padding:.25rem 0; cursor:pointer}
 @media (hover:hover){.place:hover{background:var(--bg-2)} .place .book:hover{text-decoration:underline; text-underline-offset:.2em}}
-@media (max-width:899px){.places{grid-template-columns:1fr; gap:2rem} .map-col{position:relative; top:auto} .map{aspect-ratio:1/0.9}}
+@media (max-width:899px){.places{grid-template-columns:1fr; gap:2rem} .map-col{position:relative; top:auto} .map-card{grid-template-columns:5.5rem 1fr auto}}
 
 .bron{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:4rem; align-items:start}
 .bron-intro p{margin-top:1.25rem; color:var(--ash-2); max-width:34ch}
 .bron-intro ul{margin-top:2rem; display:grid; gap:.6rem; color:var(--ash-2)}
 .bron-intro li{padding-left:1.4rem; position:relative}
 .bron-intro li::before{content:""; position:absolute; left:0; top:.65em; width:.55rem; height:1px; background:var(--ember)}
-.form{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:2.5rem; display:grid; gap:1.6rem}
+.form{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:2rem; display:grid; gap:1.3rem}
 .f > label,.f > .lab{display:block; font-weight:600; font-size:.95rem; margin-bottom:.6rem}
 .f > label span{color:var(--mut); font-weight:400}
 .f input,.f select,.f textarea{width:100%; min-height:3.25rem; padding:0 1rem; border:1px solid var(--line-2); border-radius:var(--r); background:var(--bg); color:var(--ash); transition:border-color .2s var(--snap), box-shadow .2s var(--snap)}
@@ -668,9 +670,9 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .form-ok dl{margin-top:1.5rem; display:grid; grid-template-columns:auto 1fr; gap:.5rem 1.5rem}
 .form-ok dt{color:var(--mut)}
 .form-ok p{margin-top:1.5rem; color:var(--ash-2)}
-@media (max-width:899px){.bron{grid-template-columns:1fr; gap:2.5rem} .form{padding:1.5rem} .f-row{grid-template-columns:1fr}}
+@media (max-width:899px){.bron{grid-template-columns:1fr; gap:2.5rem} .form{padding:1.5rem} .f-row{grid-template-columns:1fr} #days{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin:0 -1.5rem; padding:0 1.5rem} #days::-webkit-scrollbar{display:none} .chip.day{flex:none}}
 
-.banq{position:relative; min-height:88svh; display:flex; align-items:flex-end; overflow:hidden; isolation:isolate}
+.banq{position:relative; min-height:70svh; display:flex; align-items:flex-end; overflow:hidden; isolation:isolate}
 .banq img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2}
 .banq::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(17,15,13,.9) 0%, rgba(17,15,13,.2) 35%, rgba(17,15,13,.35) 60%, rgba(17,15,13,.95) 100%)}
 .banq .wrap{width:100%; padding-bottom:5rem; display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:end}
@@ -692,8 +694,8 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 @media (hover:hover){.qa summary:hover{color:var(--ember-2)} .qa summary:hover .pm::before,.qa summary:hover .pm::after{background:var(--ember-2)}}
 @media (max-width:899px){.faq{grid-template-columns:1fr; gap:2rem} .faq-intro{position:relative; top:auto} .qa .ans{padding-right:0}}
 
-.foot{padding:5rem 0 2.5rem; border-top:1px solid var(--line)}
-.foot-word{font-family:var(--fd); font-weight:900; text-transform:uppercase; font-size:clamp(7rem, 30vw, 30rem); line-height:.74; letter-spacing:-.01em; color:var(--ember); margin-left:-.03em}
+.foot{padding:4rem 0 2.5rem; border-top:1px solid var(--line)}
+.foot-word{font-family:var(--fd); font-weight:900; text-transform:uppercase; font-size:clamp(5rem, 18vw, 17rem); line-height:.74; letter-spacing:-.01em; color:var(--ember); margin-left:-.03em}
 .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:2rem; margin-top:4rem}
 .foot-grid h3{font-size:.85rem; font-weight:600; color:var(--mut); margin-bottom:1rem}
 .foot-grid li+li{margin-top:.5rem}
@@ -703,8 +705,8 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 @media (max-width:899px){.foot-grid{grid-template-columns:minmax(0,1fr)} .disclaimer{flex-direction:column}}
 
 .ln{display:block; overflow:hidden; padding-bottom:.04em; margin-bottom:-.04em}
-.ln > span{display:block; transform:translateY(102%); transition:transform 1.05s var(--ease)}
-.rv{opacity:0; transform:translateY(1.5rem); transition:opacity .8s var(--ease), transform 1s var(--ease)}
+.ln > span{display:block; transform:translateY(102%); transition:transform .7s var(--ease)}
+.rv{opacity:0; transform:translateY(.9rem); transition:opacity .45s var(--ease), transform .55s var(--ease)}
 .is-in .ln > span{transform:none}
 .rv.is-in{opacity:1; transform:none}
 html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
@@ -729,10 +731,10 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
       <a href="#faq">Вопросы</a>
     </nav>
     <a class="btn btn-ember" href="#bron">Забронировать стол</a>
-    <button class="burger" id="burger" aria-label="Меню сайта" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Меню сайта" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
   </div>
 </header>
-<div class="menu" id="menu">
+<div class="menu" id="mnav">
   <a href="#menu">Меню</a>
   <a href="#places">Рестораны</a>
   <a href="#banquets">Банкеты</a>
@@ -748,10 +750,10 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
     </picture>
     <canvas id="embers" aria-hidden="true"></canvas>
     <div class="hero-in">
-      <h1 id="h1" class="disp" data-split>Рестораны на живом огне</h1>
+      <h1 id="h1" class="disp">Рестораны на живом огне</h1>
       <div class="hero-side">
-        <p class="rv" data-delay="4">Восемь ресторанов «Печь» в Москве. Хлеб, мясо, рыба и овощи из дровяной печи, которая горит весь день.</p>
-        <div class="hero-cta rv" data-delay="6">
+        <p>Восемь ресторанов «Печь» в Москве. Хлеб, мясо, рыба и овощи из дровяной печи, которая горит весь день.</p>
+        <div class="hero-cta">
           <a class="btn btn-ember" href="#bron">Забронировать стол <span class="arr" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#menu">Меню</a>
         </div>
@@ -812,19 +814,11 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
       <div class="places">
         <div class="map-col rv">
           <div class="map" id="map">
-            <svg viewBox="-260 -260 520 520" role="group" aria-label="Схема Москвы с ресторанами">
-              <circle class="ring mkad" r="236"/>
-              <circle class="ring" r="128"/>
-              <circle class="ring" r="62"/>
-              <circle class="ring" r="34"/>
-              <path class="river" d="M-250 -60 C-170 -90 -150 10 -95 15 C-45 20 -45 -20 -10 8 C25 35 5 70 55 72 C110 75 120 30 165 55 C205 78 215 140 250 150"/>
-              <text class="lbl" x="0" y="-242" text-anchor="middle">МКАД</text>
-              <text class="lbl" x="0" y="-134" text-anchor="middle">ТТК</text>
-              <text class="lbl" x="0" y="-68" text-anchor="middle">САДОВОЕ</text>
-              <g id="pins"></g>
-            </svg>
-            <div class="map-card" id="mapCard" aria-live="polite"><img id="mapImg" src="assets/img/r-1.webp" alt="" width="960" height="640"><div><b id="mapName">Покровка</b><span id="mapMeta">м. Чистые пруды</span></div></div>
+            <img src="assets/img/map-900.webp" srcset="assets/img/map-900.webp 900w, assets/img/map.webp 1340w" sizes="(max-width: 899px) 100vw, 44vw" width="1340" height="1274" loading="lazy" decoding="async" alt="Карта центра Москвы: Садовое кольцо, ТТК и Москва-река с отмеченными ресторанами «Печь»">
+            <div class="pins" id="pins" role="group" aria-label="Рестораны на карте"></div>
+            <p class="map-attr">© <a href="https://www.openstreetmap.org/copyright" rel="noopener">участники OpenStreetMap</a></p>
           </div>
+          <div class="map-card" id="mapCard" aria-live="polite"><img id="mapImg" src="assets/img/r-1.webp" alt="" width="960" height="640" loading="lazy" decoding="async"><div><b id="mapName">Покровка</b><span id="mapMeta">м. Чистые пруды</span></div><a id="mapRoute" href="#" target="_blank" rel="noopener">Маршрут</a></div>
         </div>
         <div id="placeList" role="list"></div>
       </div>

@@ -1,8 +1,8 @@
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const PLACES = JSON.parse($('#places').textContent);
+const PLACES = JSON.parse($('#placesData').textContent);
 
-const nav = $('#nav'), burger = $('#burger'), menu = $('#menu');
+const nav = $('#nav'), burger = $('#burger'), menu = $('#mnav');
 burger.addEventListener('click', () => {
   const open = burger.getAttribute('aria-expanded') !== 'true';
   burger.setAttribute('aria-expanded', open);
@@ -30,16 +30,16 @@ function splitLines(el) {
   el.setAttribute('aria-label', text);
   el.innerHTML = lines.map((l, i) => `<span class="ln" aria-hidden="true"><span style="transition-delay:${i * 80}ms">${l.join(' ')}</span></span>`).join('');
 }
-Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1000))]).then(() => {
-  document.documentElement.classList.add('ready');
+document.documentElement.classList.add('ready');
+Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 500))]).then(() => {
   if (!reduce) $$('[data-split]').forEach(splitLines);
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target, sibs = [...el.parentElement.children].filter(c => c.classList.contains('rv'));
-    el.style.transitionDelay = ((+el.dataset.delay || 0) * 80 + Math.max(0, sibs.indexOf(el)) * 90) + 'ms';
+    el.style.transitionDelay = ((+el.dataset.delay || 0) * 60 + Math.max(0, sibs.indexOf(el)) * 60) + 'ms';
     el.classList.add('is-in');
     io.unobserve(el);
-  }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  }), { threshold: .08, rootMargin: '0px 0px 4% 0px' });
   $$('[data-split],.rv').forEach(el => io.observe(el));
 });
 
@@ -146,17 +146,17 @@ function status(p) {
   if (h < o) return { open: false, text: `Откроется в ${hm(o)}` };
   return { open: false, text: `Откроется завтра в ${hm(sched(p, (d + 1) % 7)[0])}` };
 }
-const pinsG = $('#pins'), plist = $('#placeList');
-const SVGNS = 'http://www.w3.org/2000/svg';
+const pinsBox = $('#pins'), plist = $('#placeList');
 PLACES.forEach((p, i) => {
-  const g = document.createElementNS(SVGNS, 'g');
-  g.setAttribute('class', 'pin');
-  g.setAttribute('tabindex', '0');
-  g.setAttribute('role', 'button');
-  g.setAttribute('aria-label', `Печь, ${p.name}`);
-  g.dataset.i = i;
-  g.innerHTML = `<circle class="h" cx="${p.x}" cy="${p.y}" r="17"/><circle class="d" cx="${p.x}" cy="${p.y}" r="6"/>`;
-  pinsG.appendChild(g);
+  const pin = document.createElement('button');
+  pin.type = 'button';
+  pin.className = 'pin';
+  pin.dataset.i = i;
+  pin.style.left = p.x + '%';
+  pin.style.top = p.y + '%';
+  pin.setAttribute('aria-label', `Печь, ${p.name}, м. ${p.metro}`);
+  pin.innerHTML = '<i aria-hidden="true"></i>';
+  pinsBox.appendChild(pin);
   const el = document.createElement('article');
   el.className = 'place';
   el.setAttribute('role', 'listitem');
@@ -184,6 +184,7 @@ function activate(i) {
   $('#mapImg').alt = `Зал ресторана «Печь» ${p.name}`;
   $('#mapName').textContent = p.name;
   $('#mapMeta').textContent = `м. ${p.metro}, ${status(p).text.toLowerCase()}`;
+  $('#mapRoute').href = 'https://yandex.ru/maps/?text=' + encodeURIComponent(`Москва, ${p.street}, метро ${p.metro}`);
 }
 activate(0);
 $$('.place').forEach(el => {
@@ -191,10 +192,11 @@ $$('.place').forEach(el => {
   el.addEventListener('click', e => { activate(+el.dataset.i); if (e.target.closest('.book')) bookAt(+el.dataset.i); });
 });
 $$('.pin').forEach(g => {
-  const go = () => { activate(+g.dataset.i); if (matchMedia('(min-width: 900px)').matches) $(`.place[data-i="${g.dataset.i}"]`).scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' }); };
-  g.addEventListener('click', go);
+  g.addEventListener('click', () => {
+    activate(+g.dataset.i);
+    if (matchMedia('(min-width: 900px)').matches) $(`.place[data-i="${g.dataset.i}"]`).scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+  });
   g.addEventListener('pointerenter', () => activate(+g.dataset.i));
-  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
 });
 
 /* booking */
