@@ -566,11 +566,12 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 @media (max-width:767px){.facts{grid-template-columns:1fr; gap:1.75rem; margin-top:4rem} .manifest{padding:6rem 0 4rem}}
 
 .menu-list{border-top:1px solid var(--line); position:relative}
-.dish{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto; align-items:center; gap:2rem; padding:1.1rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
+.dish{display:grid; grid-template-columns:4.5rem minmax(0,1.1fr) minmax(0,1fr) 6.5rem; align-items:center; gap:2rem; padding:1.1rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
 .dish h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(1.7rem, 1.7vw + .6rem, 2.5rem); line-height:.95; transition:color .25s var(--snap), transform .3s var(--snap)}
 .dish p{color:var(--ash-2); max-width:36ch}
 .dish .price{font-family:var(--fd); font-weight:700; font-size:1.5rem; white-space:nowrap}
-.dish img.th{display:none}
+.dish img.th{display:block; width:4.5rem; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r); background:var(--bg-3)}
+.dish .price{text-align:right}
 @media (hover:hover) and (min-width:900px){
   .menu-list:hover .dish h3{color:rgba(239,233,225,.35)}
   .menu-list .dish:hover h3{color:var(--ash); transform:translateX(.75rem)}
@@ -583,7 +584,7 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
   .peek{display:none}
   .dish{grid-template-columns:5.5rem 1fr; grid-template-areas:"th n" "th d" "th p"; gap:.35rem 1.25rem; align-items:start}
   .dish img.th{display:block; grid-area:th; width:5.5rem; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r)}
-  .dish h3{grid-area:n; font-size:2rem} .dish p{grid-area:d; font-size:.95rem} .dish .price{grid-area:p; font-size:1.5rem}
+  .dish h3{grid-area:n; font-size:2rem} .dish p{grid-area:d; font-size:.95rem} .dish .price{grid-area:p; font-size:1.5rem; text-align:left}
 }
 
 .kitchen{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4rem; align-items:center}
@@ -616,22 +617,26 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .place{display:grid; grid-template-columns:1fr auto; gap:.3rem 1.5rem; padding:.95rem 1rem; margin:0 -1rem; border-bottom:1px solid var(--line); border-radius:var(--r); transition:background-color .25s var(--snap); cursor:pointer}
 .place:first-child{border-top:1px solid var(--line)}
 .place.on{background:var(--bg-2)}
+.place.on .book{color:var(--ember)}
+@media (hover:hover){.place .book:hover{color:var(--ember)}}
 .place h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.55rem; line-height:1}
 .place .metro{color:var(--ash-2); font-size:.95rem}
 .place .st{grid-column:2; grid-row:1; align-self:center; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:.45rem; white-space:nowrap}
 .place .st::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:#7ad37a}
 .place .st.closed{color:var(--mut)} .place .st.closed::before{background:var(--mut)}
 .place .row{grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; color:var(--mut); font-size:.9rem}
-.place .book{grid-column:2; grid-row:2; justify-self:end; font-size:.9rem; font-weight:600; color:var(--ember); background:none; border:0; padding:.25rem 0; cursor:pointer}
+.place .book{grid-column:2; grid-row:2; justify-self:end; font-size:.9rem; font-weight:600; color:var(--mut); transition:color .2s var(--snap); background:none; border:0; padding:.25rem 0; cursor:pointer}
 @media (hover:hover){.place:hover{background:var(--bg-2)} .place .book:hover{text-decoration:underline; text-underline-offset:.2em}}
 @media (max-width:899px){.places{grid-template-columns:1fr; gap:2rem} .map-col{position:relative; top:auto} .map-card{grid-template-columns:5.5rem 1fr auto}}
 
 .bron{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:4rem; align-items:start}
+@media (min-width:900px){.bron-intro{position:sticky; top:calc(var(--nav-h) + 2rem)}}
 .bron-intro p{margin-top:1.25rem; color:var(--ash-2); max-width:34ch}
 .bron-intro ul{margin-top:2rem; display:grid; gap:.6rem; color:var(--ash-2)}
 .bron-intro li{padding-left:1.4rem; position:relative}
 .bron-intro li::before{content:""; position:absolute; left:0; top:.65em; width:.55rem; height:1px; background:var(--ember)}
 .form{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:2rem; display:grid; gap:1.3rem}
+.form, .form-fields{grid-template-columns:minmax(0,1fr)}
 .f > label,.f > .lab{display:block; font-weight:600; font-size:.95rem; margin-bottom:.6rem}
 .f > label span{color:var(--mut); font-weight:400}
 .f input,.f select,.f textarea{width:100%; min-height:3.25rem; padding:0 1rem; border:1px solid var(--line-2); border-radius:var(--r); background:var(--bg); color:var(--ash); transition:border-color .2s var(--snap), box-shadow .2s var(--snap)}
@@ -643,7 +648,7 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .f .msg{min-height:1.1rem; font-size:.85rem; color:#ff8a80; margin-top:.35rem}
 .chips{display:flex; flex-wrap:wrap; gap:.45rem}
 .chip{min-height:2.75rem; padding:0 .95rem; border:1px solid var(--line-2); border-radius:var(--r); background:transparent; cursor:pointer; font-size:.95rem; font-variant-numeric:tabular-nums; transition:background-color .2s var(--snap), border-color .2s var(--snap), color .2s var(--snap), transform .15s var(--snap)}
-.chip small{display:block; font-size:.7rem; color:var(--mut); line-height:1; margin-top:.1rem}
+.chip small{display:block; font-size:.78rem; color:var(--mut); line-height:1; margin-top:.1rem}
 .chip[aria-pressed="true"]{background:var(--ember); border-color:var(--ember); color:#160b06}
 .chip[aria-pressed="true"] small{color:#3b1508}
 .chip:active{transform:scale(.96)}
@@ -670,39 +675,48 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .form-ok dl{margin-top:1.5rem; display:grid; grid-template-columns:auto 1fr; gap:.5rem 1.5rem}
 .form-ok dt{color:var(--mut)}
 .form-ok p{margin-top:1.5rem; color:var(--ash-2)}
-@media (max-width:899px){.bron{grid-template-columns:1fr; gap:2.5rem} .form{padding:1.5rem} .f-row{grid-template-columns:1fr} #days{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin:0 -1.5rem; padding:0 1.5rem} #days::-webkit-scrollbar{display:none} .chip.day{flex:none}}
+@media (max-width:899px){.bron{grid-template-columns:1fr; gap:2.5rem} .form{padding:1.5rem} .f-row{grid-template-columns:1fr} .bron{grid-template-columns:minmax(0,1fr)} .form{min-width:0} #days{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin:0 -1.5rem; padding:0 1.5rem} #days::-webkit-scrollbar{display:none} .chip.day{flex:none}}
 
 .banq{position:relative; min-height:70svh; display:flex; align-items:flex-end; overflow:hidden; isolation:isolate}
 .banq img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2}
-.banq::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(17,15,13,.9) 0%, rgba(17,15,13,.2) 35%, rgba(17,15,13,.35) 60%, rgba(17,15,13,.95) 100%)}
+.banq::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, var(--bg) 0%, rgba(17,15,13,.2) 35%, rgba(17,15,13,.35) 60%, rgba(17,15,13,.95) 100%)}
 .banq .wrap{width:100%; padding-bottom:5rem; display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:end}
 .banq p{color:var(--ash-2); font-size:1.15rem; max-width:34ch}
 .banq .btn{margin-top:1.75rem}
 @media (max-width:899px){.banq .wrap{grid-template-columns:1fr; padding-bottom:3rem} .banq{min-height:75svh}}
 
-.faq{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:4rem}
-.faq-intro{position:sticky; top:calc(var(--nav-h) + 3rem); align-self:start}
+.faq{display:grid; gap:2.75rem}
 .qa{border-top:1px solid var(--line)}
 .qa:last-child{border-bottom:1px solid var(--line)}
-.qa summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:2rem; padding:1.5rem 0; font-size:1.25rem; font-weight:600}
+.qa summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:2rem; padding:1.35rem 0; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(1.5rem, 1.4vw + .7rem, 2.2rem); line-height:1; transition:color .25s var(--snap)}
+@media (hover:hover){.qa summary:hover{color:var(--ember)}}
 .qa summary::-webkit-details-marker{display:none}
 .pm{flex:none; width:1.2rem; height:1.2rem; position:relative}
 .pm::before,.pm::after{content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; background:var(--ash); transition:transform .3s var(--snap), background-color .2s}
 .pm::after{transform:rotate(90deg)}
 .qa[open] .pm::after{transform:rotate(0)}
-.qa .ans{padding:0 4rem 1.75rem 0; color:var(--ash-2); max-width:58ch}
+.qa .ans{padding:0 4rem 1.75rem 0; color:var(--ash-2); max-width:62ch; font-size:1.05rem}
 @media (hover:hover){.qa summary:hover{color:var(--ember-2)} .qa summary:hover .pm::before,.qa summary:hover .pm::after{background:var(--ember-2)}}
-@media (max-width:899px){.faq{grid-template-columns:1fr; gap:2rem} .faq-intro{position:relative; top:auto} .qa .ans{padding-right:0}}
+@media (max-width:899px){.faq{grid-template-columns:1fr; gap:2rem} .qa .ans{padding-right:0}}
 
 .foot{padding:4rem 0 2.5rem; border-top:1px solid var(--line)}
-.foot-word{font-family:var(--fd); font-weight:900; text-transform:uppercase; font-size:clamp(5rem, 18vw, 17rem); line-height:.74; letter-spacing:-.01em; color:var(--ember); margin-left:-.03em}
-.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:2rem; margin-top:4rem}
-.foot-grid h3{font-size:.85rem; font-weight:600; color:var(--mut); margin-bottom:1rem}
-.foot-grid li+li{margin-top:.5rem}
+.foot-top{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap}
+.foot-live{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(2.4rem, 4.2vw, 4.6rem); line-height:.92; max-width:14ch}
+.foot-live em{font-style:normal; color:var(--ember); white-space:nowrap}
+.foot-addr{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); margin-top:3.5rem; border-top:1px solid var(--line)}
+.foot-addr li{border-bottom:1px solid var(--line)}
+.foot-addr a{display:grid; gap:.3rem; padding:1.1rem 1rem 1.1rem 0; transition:color .2s var(--snap)}
+.foot-addr b{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.3rem; line-height:1}
+.foot-addr span{color:var(--mut); font-size:.9rem; display:flex; align-items:center; gap:.45rem}
+.foot-addr span::before{content:""; width:.45rem; height:.45rem; border-radius:50%; background:var(--mut)}
+.foot-addr .open span::before{background:#7ad37a}
+@media (hover:hover){.foot-addr a:hover b{color:var(--ember)}}
+.foot-line{display:flex; flex-wrap:wrap; gap:.6rem 2rem; margin-top:2.5rem; color:var(--ash-2)}
+@media (hover:hover){.foot-line a:hover{color:var(--ash)}}
 @media (hover:hover){.foot-grid a:hover{color:var(--ember-2)}}
 .disclaimer{margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:2rem; color:var(--mut); font-size:.85rem}
 .disclaimer p{max-width:60ch}
-@media (max-width:899px){.foot-grid{grid-template-columns:minmax(0,1fr)} .disclaimer{flex-direction:column}}
+@media (max-width:899px){.foot-addr{grid-template-columns:repeat(2, minmax(0,1fr))} .foot-line{flex-direction:column} .disclaimer{flex-direction:column}}
 
 .ln{display:block; overflow:hidden; padding-bottom:.04em; margin-bottom:-.04em}
 .ln > span{display:block; transform:translateY(102%); transition:transform .7s var(--ease)}
@@ -766,7 +780,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
       <p class="lit" id="manifest">Огонь в печи разжигаем в восемь утра и не даём ему погаснуть до закрытия. Хлеб печём на закваске каждое утро, мясо и рыбу готовим на углях, а овощи томим ночью в остывающей печи.</p>
       <div class="facts">
         <div class="rv"><b class="num">450°</b><span>температура под сводом, пицца готовится за 90 секунд</span></div>
-        <div class="rv"><b class="num">14 ч</b><span>горит огонь каждый день, с утренней выпечки до последнего стола</span></div>
+        <div class="rv"><b class="num">16 ч</b><span>горит огонь каждый день, с утренней выпечки до последнего стола</span></div>
         <div class="rv"><b class="num">8</b><span>ресторанов в Москве, в каждом своя печь, сложенная вручную</span></div>
       </div>
     </div>
@@ -792,7 +806,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
 
   <section class="sec" id="kitchen" aria-labelledby="k-title" style="padding-top:2rem">
     <div class="wrap kitchen">
-      <figure class="rv"><img src="assets/img/kitchen.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen.webp 1100w" sizes="(max-width: 899px) 100vw, 50vw" width="1100" height="1375" loading="lazy" decoding="async" alt="Повар готовит на открытом огне в кухне ресторана"></figure>
+      <figure class="rv"><img src="assets/img/kitchen.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen.webp 1100w" sizes="(max-width: 899px) 100vw, 50vw" width="1100" height="1100" loading="lazy" decoding="async" alt="Повар у открытого огня в дровяной печи"></figure>
       <div>
         <h2 id="k-title" data-split>Кухня у всех на виду</h2>
         <p class="sub rv">Печь стоит в центре зала. Садитесь за стойку у огня и смотрите, как готовят ваш заказ.</p>
@@ -863,7 +877,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
   </section>
 
   <section class="banq" id="banquets" aria-labelledby="bq-title">
-    <img src="assets/img/banquet.webp" srcset="assets/img/banquet-900.webp 900w, assets/img/banquet.webp 1600w" sizes="100vw" width="1600" height="900" loading="lazy" decoding="async" alt="Длинный банкетный стол со свечами и цветами в полутёмном зале">
+    <img src="assets/img/banquet.webp" srcset="assets/img/banquet-900.webp 900w, assets/img/banquet.webp 1600w" sizes="100vw" width="1600" height="900" loading="lazy" decoding="async" alt="Длинный банкетный стол со свечами и цветами">
     <div class="wrap">
       <h2 id="bq-title" data-split>Банкеты до 60 гостей</h2>
       <div>
@@ -889,16 +903,20 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot-word" aria-hidden="true">Печь</div>
-    <div class="foot-grid">
-      <div><p style="max-width:28ch;color:var(--ash-2)">Сеть ресторанов на живом огне. Москва, восемь адресов.</p></div>
-      <div><h3>Разделы</h3><ul><li><a href="#menu">Меню</a></li><li><a href="#places">Рестораны</a></li><li><a href="#banquets">Банкеты</a></li><li><a href="#bron">Бронь</a></li></ul></div>
-      <div><h3>Связь</h3><ul><li><a href="tel:+74950000000">+7 495 000-00-00</a></li><li><a href="mailto:hello@pech.example">hello@pech.example</a></li><li>Ежедневно с 12:00</li></ul></div>
-      <div><h3>Документы</h3><ul><li><a href="politika.html">Политика конфиденциальности</a></li><li><a href="soglasie.html">Согласие на обработку данных</a></li></ul></div>
+    <div class="foot-top">
+      <p class="foot-live" id="footLive">Огонь горит в&nbsp;<em>8 из&nbsp;8</em> ресторанов</p>
+      <a class="btn btn-ember" href="#bron">Забронировать стол <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <ul class="foot-addr" id="footAddr" aria-label="Адреса ресторанов"></ul>
+    <div class="foot-line">
+      <a href="tel:+74950000000">+7 495 000-00-00</a>
+      <a href="mailto:hello@pech.example">hello@pech.example</a>
+      <a href="politika.html">Политика конфиденциальности</a>
+      <a href="soglasie.html">Согласие на обработку данных</a>
     </div>
     <div class="disclaimer">
-      <p>Демонстрационный проект для портфолио. Сеть «Печь», адреса, цены и меню вымышлены, бронь никуда не отправляется. Фото: Unsplash.</p>
-      <p>Дизайн и разработка: <a href="https://instagram.com/automatorrr" rel="noopener" style="text-decoration:underline">@automatorrr</a></p>
+      <p>Демонстрационный проект для портфолио. Сеть «Печь», адреса, цены и меню вымышлены, бронь никуда не отправляется. Фото: Unsplash.</p>
+      <p>Дизайн и разработка: <a href="https://instagram.com/automatorrr" rel="noopener" style="text-decoration:underline">@automatorrr</a></p>
     </div>
   </div>
 </footer>

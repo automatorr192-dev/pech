@@ -137,12 +137,13 @@ const DAY = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 const MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 const msk = () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Moscow' }));
 const hm = h => `${String(Math.floor(h % 24)).padStart(2, '0')}:${h % 1 ? '30' : '00'}`;
+const until = h => (h % 24 ? hm(h) : 'полуночи');
 const sched = (p, day) => (day === 5 || day === 6 ? p.we : p.wk);
 function status(p) {
   const n = msk(), d = n.getDay(), h = n.getHours() + n.getMinutes() / 60;
   const [o, c] = sched(p, d), [, pc] = sched(p, (d + 6) % 7);
-  if (pc > 24 && h < pc - 24) return { open: true, text: `Открыто до ${hm(pc)}` };
-  if (h >= o && h < c) return { open: true, text: `Открыто до ${hm(c)}` };
+  if (pc > 24 && h < pc - 24) return { open: true, text: `Открыто до ${until(pc)}` };
+  if (h >= o && h < c) return { open: true, text: `Открыто до ${until(c)}` };
   if (h < o) return { open: false, text: `Откроется в ${hm(o)}` };
   return { open: false, text: `Откроется завтра в ${hm(sched(p, (d + 1) % 7)[0])}` };
 }
@@ -161,15 +162,22 @@ PLACES.forEach((p, i) => {
   el.className = 'place';
   el.setAttribute('role', 'listitem');
   el.dataset.i = i;
-  el.innerHTML = `<h3>${p.name}</h3><span class="st"></span><span class="metro">м. ${p.metro}</span><button type="button" class="book">Забронировать здесь</button><div class="row"><span>${p.street}</span><span class="num">пн-чт, вс ${hm(p.wk[0])}-${hm(p.wk[1])}</span><span class="num">пт-сб ${hm(p.we[0])}-${hm(p.we[1])}</span></div>`;
+  el.innerHTML = `<h3>${p.name}</h3><span class="st"></span><span class="metro">м. ${p.metro}</span><button type="button" class="book">Забронировать здесь</button><div class="row"><span>${p.street}</span><span class="num">пн–чт, вс ${hm(p.wk[0])}–${hm(p.wk[1])}</span><span class="num">пт–сб ${hm(p.we[0])}–${hm(p.we[1])}</span></div>`;
   plist.appendChild(el);
 });
+const footAddr = $('#footAddr');
+footAddr.innerHTML = PLACES.map((p, i) => `<li><a href="#places" data-i="${i}"><b>${p.name}</b><span>м. ${p.metro}</span></a></li>`).join('');
+footAddr.addEventListener('click', e => { const a = e.target.closest('a'); if (a) activate(+a.dataset.i); });
 function paintStatus() {
   $$('.place').forEach(el => {
     const s = status(PLACES[+el.dataset.i]), st = el.querySelector('.st');
     st.textContent = s.text;
     st.classList.toggle('closed', !s.open);
   });
+  const open = PLACES.map(status).map(s => s.open);
+  $$('#footAddr a').forEach((a, i) => a.classList.toggle('open', open[i]));
+  const n = open.filter(Boolean).length;
+  $('#footLive').innerHTML = n ? `Огонь горит в&nbsp;<em>${n} из&nbsp;8</em> ресторанов` : 'Печи остыли до&nbsp;утра. <em>Бронь работает</em>';
 }
 paintStatus();
 setInterval(paintStatus, 60000);
@@ -214,9 +222,9 @@ function renderTimes() {
   const p = PLACES[+fPlace.value], d = dateFor(day), [o, c] = sched(p, d.getDay());
   const n = msk(), nowH = day === 0 ? n.getHours() + n.getMinutes() / 60 + .5 : -1;
   const slots = [];
-  for (let h = o; h <= Math.min(c, 24) - 1.5; h += .5) slots.push(h);
+  for (let h = o; h <= Math.min(c, 24) - 1.5; h += .5) if (h >= nowH) slots.push(h);
   if (time !== null && !slots.includes(time)) time = null;
-  timesEl.innerHTML = slots.map(h => `<button type="button" class="chip" data-h="${h}" aria-pressed="${h === time}" ${h < nowH ? 'disabled' : ''}>${hm(h)}</button>`).join('') || '<span style="color:var(--mut)">На сегодня свободных слотов нет, выберите другой день</span>';
+  timesEl.innerHTML = slots.map(h => `<button type="button" class="chip" data-h="${h}" aria-pressed="${h === time}">${hm(h)}</button>`).join('') || '<span style="color:var(--mut)">На сегодня свободных слотов нет, выберите другой день</span>';
 }
 renderDays(); renderTimes();
 daysEl.addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; day = +b.dataset.k; renderDays(); renderTimes(); });
