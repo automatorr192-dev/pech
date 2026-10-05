@@ -9,7 +9,10 @@ burger.addEventListener('click', () => {
   menu.classList.toggle('open', open);
   nav.classList.add('solid');
 });
-menu.addEventListener('click', e => { if (e.target.closest('a')) { burger.setAttribute('aria-expanded', 'false'); menu.classList.remove('open'); } });
+const closeMenu = () => { burger.setAttribute('aria-expanded', 'false'); menu.classList.remove('open'); };
+menu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) { closeMenu(); burger.focus(); } });
+matchMedia('(min-width: 600px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
 const sentinel = document.createElement('div');
 sentinel.style.cssText = 'position:absolute;top:0;height:60px;width:1px;pointer-events:none';
 document.body.prepend(sentinel);
@@ -101,35 +104,23 @@ if (!reduce && ec.getContext) {
   kick();
 }
 
-/* menu peek */
-const peek = $('#peek'), list = $('#menuList');
-if (matchMedia('(hover: hover) and (min-width: 900px)').matches) {
-  const imgs = new Map();
-  let tx = 0, ty = 0, px = 0, py = 0, vx = 0, raf = 0, inside = false;
-  const tick = () => {
-    raf = 0;
-    const nx = px + (tx - px) * (reduce ? 1 : .16), ny = py + (ty - py) * (reduce ? 1 : .16);
-    vx = nx - px; px = nx; py = ny;
-    const rot = Math.max(-8, Math.min(8, vx * .35));
-    peek.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0) translate(-50%, -50%) rotate(${rot.toFixed(2)}deg) scale(${inside ? 1 : .85})`;
-    if (inside || Math.abs(tx - px) > .5) raf = requestAnimationFrame(tick);
-  };
-  list.addEventListener('pointermove', e => {
-    tx = e.clientX + 150; ty = e.clientY;
-    if (!inside) { inside = true; px = tx; py = ty; peek.classList.add('on'); }
-    if (!raf) raf = requestAnimationFrame(tick);
+/* menu photo */
+const photo = $('#menuPhoto'), cap = $('#menuCap');
+if (matchMedia('(min-width: 900px) and (hover: hover)').matches) {
+  const shots = $$('.dish').map((d, i) => {
+    const im = new Image();
+    im.src = d.dataset.img; im.alt = ''; im.decoding = 'async';
+    if (i) im.loading = 'lazy';
+    photo.insertBefore(im, cap);
+    return im;
   });
-  list.addEventListener('pointerleave', () => { inside = false; peek.classList.remove('on'); });
-  $$('.dish').forEach(d => d.addEventListener('pointerenter', () => {
-    const src = d.dataset.img;
-    if (!imgs.has(src)) {
-      const im = new Image();
-      im.src = src; im.alt = ''; im.decoding = 'async';
-      peek.appendChild(im);
-      imgs.set(src, im);
-    }
-    imgs.forEach((im, k) => im.classList.toggle('on', k === src));
-  }));
+  const show = d => {
+    const i = $$('.dish').indexOf(d);
+    shots.forEach((im, k) => im.classList.toggle('on', k === i));
+    cap.innerHTML = `<span>${d.querySelector('h3').textContent}</span><span>${d.querySelector('.price').textContent}</span>`;
+  };
+  $$('.dish').forEach(d => d.addEventListener('pointerenter', () => show(d)));
+  show($('.dish'));
 }
 
 /* places, Moscow time */
@@ -156,7 +147,7 @@ PLACES.forEach((p, i) => {
   pin.style.left = p.x + '%';
   pin.style.top = p.y + '%';
   pin.setAttribute('aria-label', `Печь, ${p.name}, м. ${p.metro}`);
-  pin.innerHTML = '<i aria-hidden="true"></i>';
+  pin.innerHTML = `<i aria-hidden="true"></i><b aria-hidden="true">${p.name}</b>`;
   pinsBox.appendChild(pin);
   const el = document.createElement('article');
   el.className = 'place';
@@ -251,6 +242,31 @@ function bookAt(i) {
   $('#bron').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
 }
 $('#banqBtn').addEventListener('click', () => setGuests(20));
+$('#newBron').addEventListener('click', () => { $('#bronForm').classList.remove('sent'); time = null; renderTimes(); fPlace.focus(); });
+
+function nearest() {
+  const n = msk(), nowH = n.getHours() + n.getMinutes() / 60 + .5;
+  let best = null;
+  PLACES.forEach((p, i) => {
+    const [o, c] = sched(p, n.getDay());
+    for (let h = o; h <= Math.min(c, 24) - 1.5; h += .5) if (h >= nowH) { if (!best || h < best.h) best = { i, h, d: 0 }; break; }
+  });
+  if (!best) PLACES.forEach((p, i) => { const o = sched(p, (n.getDay() + 1) % 7)[0]; if (!best || o < best.h) best = { i, h: o, d: 1 }; });
+  return best;
+}
+function paintHero() {
+  const b = nearest(), lit = PLACES.filter(p => status(p).open).length;
+  $('#liveTitle').textContent = `Ближайший стол ${b.d ? 'завтра' : 'сегодня'} в ${hm(b.h)}`;
+  $('#liveMeta').textContent = `${PLACES[b.i].name} · ${lit ? `огонь горит в ${lit} из 8` : 'печи остыли до утра'}`;
+  $('#heroLive').onclick = e => {
+    e.preventDefault();
+    fPlace.value = b.i; day = b.d; time = b.h;
+    renderDays(); renderTimes(); activate(b.i);
+    $('#bron').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  };
+}
+paintHero();
+setInterval(paintHero, 60000);
 
 const phone = $('#fPhone');
 phone.addEventListener('input', () => {
@@ -285,5 +301,6 @@ $('#bronForm').addEventListener('submit', e => {
   const rows = [['Ресторан', `${p.name}, м. ${p.metro}`], ['Дата', `${d.getDate()} ${MON[d.getMonth()]}, ${DAY[d.getDay()]}`], ['Время', time !== null ? hm(time) : 'обсудим по телефону'], ['Гостей', guests], ['Имя', $('#fName').value.trim()]];
   $('#okList').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   $('#bronForm').classList.add('sent');
-  $('#formOk').focus();
+  scrollTo({ top: $('#bronForm').getBoundingClientRect().top + scrollY - nav.offsetHeight - 16, behavior: reduce ? 'auto' : 'smooth' });
+  $('#formOk').focus({ preventScroll: true });
 });

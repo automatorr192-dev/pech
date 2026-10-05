@@ -544,11 +544,17 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none}
 .hero-in{width:100%; padding:0 var(--gut) 3.5rem; display:grid; grid-template-columns:1fr auto; align-items:end; gap:2rem}
 .hero h1{font-size:clamp(3.2rem, 6vw, 8rem); max-width:12.5ch; animation:heroIn .7s var(--ease) both}
-.hero-side{max-width:24rem; padding-bottom:.8rem}
-.hero-side p{color:var(--ash-2); font-size:1.125rem}
+.hero-lead{margin-top:1.4rem; color:var(--ash-2); font-size:1.15rem; max-width:34ch}
+.hero-live{align-self:end; display:grid; grid-template-columns:auto 1fr; gap:.25rem .85rem; align-items:center; min-width:17rem; padding:1.1rem 1.35rem; border-radius:var(--r); border:1px solid var(--line-2); background:rgba(17,15,13,.55); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); transition:border-color .25s var(--snap), background-color .25s var(--snap)}
+.hero-live i{grid-row:1 / span 2; width:.6rem; height:.6rem; border-radius:50%; background:var(--ember); box-shadow:0 0 0 .3rem rgba(240,90,40,.25); animation:ember 2.4s ease-in-out infinite}
+.hero-live b{font-weight:700; font-size:1.05rem}
+.hero-live small{grid-column:2; color:var(--ash-2); font-size:.9rem}
+@media (hover:hover){.hero-live:hover{border-color:var(--ember); background:rgba(17,15,13,.7)}}
+@keyframes ember{50%{box-shadow:0 0 0 .55rem rgba(240,90,40,0)}}
 .hero-cta{display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.75rem}
 @media (max-width:899px){.hero-in{grid-template-columns:1fr; gap:1.25rem; padding-bottom:2rem} .hero h1{font-size:clamp(2.9rem, 13vw, 4.8rem)}}
-.hero-side{animation:heroIn .7s .08s var(--ease) both}
+.hero-lead,.hero-cta{animation:heroIn .7s .08s var(--ease) both}
+.hero-live{animation:heroIn .7s .16s var(--ease) both}
 @keyframes heroIn{from{transform:translateY(1rem)}to{transform:none}}
 
 .manifest{padding:6.5rem 0 5rem}
@@ -566,24 +572,25 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 @media (max-width:767px){.facts{grid-template-columns:1fr; gap:1.75rem; margin-top:4rem} .manifest{padding:6rem 0 4rem}}
 
 .menu-list{border-top:1px solid var(--line); position:relative}
-.dish{display:grid; grid-template-columns:4.5rem minmax(0,1.1fr) minmax(0,1fr) 6.5rem; align-items:center; gap:2rem; padding:1.1rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
+.menu-grid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:3.5rem; align-items:start}
+.menu-photo{position:sticky; top:calc(var(--nav-h) + 1.5rem); margin:0; aspect-ratio:4/5; border-radius:var(--r); overflow:hidden; background:var(--bg-2)}
+.menu-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.04); transition:opacity .45s var(--snap), transform .9s var(--ease)}
+.menu-photo img.on{opacity:1; transform:none}
+.menu-photo figcaption{position:absolute; left:0; right:0; bottom:0; z-index:1; padding:3rem 1.5rem 1.25rem; display:flex; justify-content:space-between; gap:1rem; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.6rem; line-height:1; background:linear-gradient(transparent, rgba(17,15,13,.85))}
+.dish{display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"n p" "d d"; align-items:baseline; gap:.45rem 2rem; padding:1.1rem 0; border-bottom:1px solid var(--line); cursor:default; position:relative}
 .dish h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(1.7rem, 1.7vw + .6rem, 2.5rem); line-height:.95; transition:color .25s var(--snap), transform .3s var(--snap)}
 .dish p{color:var(--ash-2); max-width:36ch}
 .dish .price{font-family:var(--fd); font-weight:700; font-size:1.5rem; white-space:nowrap}
-.dish img.th{display:block; width:4.5rem; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r); background:var(--bg-3)}
-.dish .price{text-align:right}
+.dish h3{grid-area:n} .dish p{grid-area:d} .dish .price{grid-area:p}
+.dish img.th{display:none}
 @media (hover:hover) and (min-width:900px){
   .menu-list:hover .dish h3{color:rgba(239,233,225,.35)}
   .menu-list .dish:hover h3{color:var(--ash); transform:translateX(.75rem)}
 }
-.peek{position:fixed; left:0; top:0; z-index:40; width:14rem; aspect-ratio:4/5; border-radius:var(--r); overflow:hidden; pointer-events:none; opacity:0; transform:translate3d(-50%,-50%,0) scale(.85); transition:opacity .25s var(--snap); box-shadow:0 2rem 4rem -1rem rgba(0,0,0,.6)}
-.peek img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .3s var(--snap)}
-.peek img.on{opacity:1}
-.peek.on{opacity:1}
 @media (max-width:899px), (hover:none){
-  .peek{display:none}
-  .dish{grid-template-columns:5.5rem 1fr; grid-template-areas:"th n" "th d" "th p"; gap:.35rem 1.25rem; align-items:start}
-  .dish img.th{display:block; grid-area:th; width:5.5rem; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r)}
+  .menu-grid{display:block} .menu-photo{display:none}
+    .dish{grid-template-columns:5.5rem 1fr; grid-template-areas:"th n" "th d" "th p"; gap:.35rem 1.25rem; align-items:start}
+  .dish img.th{display:block !important; grid-area:th; width:5.5rem; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r)}
   .dish h3{grid-area:n; font-size:2rem} .dish p{grid-area:d; font-size:.95rem} .dish .price{grid-area:p; font-size:1.5rem; text-align:left}
 }
 
@@ -605,6 +612,8 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .pin i{position:relative; width:.85rem; height:.85rem; border-radius:50%; background:var(--ash); box-shadow:0 0 0 3px rgba(17,15,13,.85); transition:background-color .2s var(--snap), transform .25s var(--snap)}
 .pin.on::before{opacity:.28; transform:none}
 .pin.on i{background:var(--ember); transform:scale(1.2)}
+.pin b{position:absolute; left:50%; bottom:calc(100% - .1rem); padding:.3rem .55rem; border-radius:.25rem; background:var(--ash); color:#160b06; font-size:.8rem; font-weight:700; white-space:nowrap; opacity:0; transform:translate(-50%, .3rem); pointer-events:none; transition:opacity .2s var(--snap), transform .25s var(--snap)}
+.pin.on b, .pin:hover b, .pin:focus-visible b{opacity:1; transform:translate(-50%, 0)}
 @media (hover:hover){.pin:hover i{transform:scale(1.2)}}
 .map-attr{position:absolute; right:.5rem; bottom:.4rem; margin:0; font-size:.68rem; color:rgba(239,233,225,.55)}
 .map-attr a{text-decoration:underline}
@@ -614,17 +623,18 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .map-card span{display:block; color:var(--ash-2); font-size:.85rem; margin-top:.25rem}
 .map-card a{font-size:.85rem; font-weight:600; color:var(--ember); padding:.5rem .25rem; white-space:nowrap}
 @media (hover:hover){.map-card a:hover{text-decoration:underline; text-underline-offset:.2em}}
-.place{display:grid; grid-template-columns:1fr auto; gap:.3rem 1.5rem; padding:.95rem 1rem; margin:0 -1rem; border-bottom:1px solid var(--line); border-radius:var(--r); transition:background-color .25s var(--snap); cursor:pointer}
+.place{display:grid; grid-template-columns:1fr auto; gap:.3rem 1.5rem; padding:.95rem 1rem; border-bottom:1px solid var(--line); border-radius:var(--r); transition:background-color .25s var(--snap); cursor:pointer}
 .place:first-child{border-top:1px solid var(--line)}
 .place.on{background:var(--bg-2)}
 .place.on .book{color:var(--ember)}
 @media (hover:hover){.place .book:hover{color:var(--ember)}}
 .place h3{font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:1.55rem; line-height:1}
 .place .metro{color:var(--ash-2); font-size:.95rem}
-.place .st{grid-column:2; grid-row:1; align-self:center; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:.45rem; white-space:nowrap}
+.place .st{grid-column:2; grid-row:1; align-self:center; justify-self:end; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:.45rem; white-space:nowrap}
 .place .st::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:#7ad37a}
 .place .st.closed{color:var(--mut)} .place .st.closed::before{background:var(--mut)}
 .place .row{grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; color:var(--mut); font-size:.9rem}
+@media (max-width:599px){.place .row{flex-direction:column; gap:.15rem}}
 .place .book{grid-column:2; grid-row:2; justify-self:end; font-size:.9rem; font-weight:600; color:var(--mut); transition:color .2s var(--snap); background:none; border:0; padding:.25rem 0; cursor:pointer}
 @media (hover:hover){.place:hover{background:var(--bg-2)} .place .book:hover{text-decoration:underline; text-underline-offset:.2em}}
 @media (max-width:899px){.places{grid-template-columns:1fr; gap:2rem} .map-col{position:relative; top:auto} .map-card{grid-template-columns:5.5rem 1fr auto}}
@@ -637,6 +647,8 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 .bron-intro li::before{content:""; position:absolute; left:0; top:.65em; width:.55rem; height:1px; background:var(--ember)}
 .form{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:2rem; display:grid; gap:1.3rem}
 .form, .form-fields{grid-template-columns:minmax(0,1fr)}
+.form-fields{display:grid; gap:1.6rem}
+#times{display:grid; grid-template-columns:repeat(auto-fill, minmax(4.6rem, 1fr))}
 .f > label,.f > .lab{display:block; font-weight:600; font-size:.95rem; margin-bottom:.6rem}
 .f > label span{color:var(--mut); font-weight:400}
 .f input,.f select,.f textarea{width:100%; min-height:3.25rem; padding:0 1rem; border:1px solid var(--line-2); border-radius:var(--r); background:var(--bg); color:var(--ash); transition:border-color .2s var(--snap), box-shadow .2s var(--snap)}
@@ -686,18 +698,11 @@ h3{font-weight:600; font-size:1.25rem; line-height:1.2}
 @media (max-width:899px){.banq .wrap{grid-template-columns:1fr; padding-bottom:3rem} .banq{min-height:75svh}}
 
 .faq{display:grid; gap:2.75rem}
-.qa{border-top:1px solid var(--line)}
-.qa:last-child{border-bottom:1px solid var(--line)}
-.qa summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:2rem; padding:1.35rem 0; font-family:var(--fd); font-weight:800; text-transform:uppercase; font-size:clamp(1.5rem, 1.4vw + .7rem, 2.2rem); line-height:1; transition:color .25s var(--snap)}
-@media (hover:hover){.qa summary:hover{color:var(--ember)}}
-.qa summary::-webkit-details-marker{display:none}
-.pm{flex:none; width:1.2rem; height:1.2rem; position:relative}
-.pm::before,.pm::after{content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; background:var(--ash); transition:transform .3s var(--snap), background-color .2s}
-.pm::after{transform:rotate(90deg)}
-.qa[open] .pm::after{transform:rotate(0)}
-.qa .ans{padding:0 4rem 1.75rem 0; color:var(--ash-2); max-width:62ch; font-size:1.05rem}
-@media (hover:hover){.qa summary:hover{color:var(--ember-2)} .qa summary:hover .pm::before,.qa summary:hover .pm::after{background:var(--ember-2)}}
-@media (max-width:899px){.faq{grid-template-columns:1fr; gap:2rem} .qa .ans{padding-right:0}}
+.qa-list{border-bottom:1px solid var(--line)}
+.qa{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:1rem 3rem; padding:1.75rem 0; border-top:1px solid var(--line)}
+.qa h3{font-size:1.4rem; font-weight:700; line-height:1.2; letter-spacing:-.01em}
+.qa .ans{color:var(--ash-2); max-width:58ch; font-size:1.05rem}
+@media (max-width:899px){.faq{gap:2rem} .qa{grid-template-columns:1fr; gap:.6rem} .qa h3{font-size:1.2rem}}
 
 .foot{padding:4rem 0 2.5rem; border-top:1px solid var(--line)}
 .foot-top{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap}
@@ -764,14 +769,15 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
     </picture>
     <canvas id="embers" aria-hidden="true"></canvas>
     <div class="hero-in">
-      <h1 id="h1" class="disp">Рестораны на живом огне</h1>
-      <div class="hero-side">
-        <p>Восемь ресторанов «Печь» в Москве. Хлеб, мясо, рыба и овощи из дровяной печи, которая горит весь день.</p>
+      <div class="hero-main">
+        <h1 id="h1" class="disp">Рестораны на живом огне</h1>
+        <p class="hero-lead">Восемь ресторанов «Печь» в Москве. Хлеб, мясо, рыба и овощи из дровяной печи, которая горит весь день.</p>
         <div class="hero-cta">
-          <a class="btn btn-ember" href="#bron">Забронировать стол <span class="arr" aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="#menu">Меню</a>
+            <a class="btn btn-ember" href="#bron">Забронировать стол <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#menu">Меню</a>
         </div>
       </div>
+      <a class="hero-live" href="#bron" id="heroLive"><i aria-hidden="true"></i><b id="liveTitle">Ближайший стол</b><small id="liveMeta">Покровка</small></a>
     </div>
   </section>
 
@@ -779,7 +785,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
     <div class="wrap">
       <p class="lit" id="manifest">Огонь в печи разжигаем в восемь утра и не даём ему погаснуть до закрытия. Хлеб печём на закваске каждое утро, мясо и рыбу готовим на углях, а овощи томим ночью в остывающей печи.</p>
       <div class="facts">
-        <div class="rv"><b class="num">450°</b><span>температура под сводом, пицца готовится за 90 секунд</span></div>
+        <div class="rv"><b class="num">450°</b><span>температура под сводом, лепёшка печётся за 90 секунд</span></div>
         <div class="rv"><b class="num">16 ч</b><span>горит огонь каждый день, с утренней выпечки до последнего стола</span></div>
         <div class="rv"><b class="num">8</b><span>ресторанов в Москве, в каждом своя печь, сложенная вручную</span></div>
       </div>
@@ -792,6 +798,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
         <h2 id="menu-title" data-split>Что в печи</h2>
         <p class="sub rv">Шесть блюд, ради которых возвращаются. Полное меню меняется по сезону.</p>
       </div>
+      <div class="menu-grid">
       <div class="menu-list" id="menuList">
         <article class="dish" data-img="assets/img/d-bread.webp"><img class="th" src="assets/img/d-bread.webp" alt="" width="720" height="900" loading="lazy" decoding="async"><h3>Хлеб на закваске</h3><p>Пшеничная закваска, 18 часов брожения. Подаём тёплым, с солёным маслом.</p><span class="price num">390 ₽</span></article>
         <article class="dish" data-img="assets/img/d-flat.webp"><img class="th" src="assets/img/d-flat.webp" alt="" width="720" height="900" loading="lazy" decoding="async"><h3>Лепёшка из печи</h3><p>Томлёные томаты, страчателла и базилик, тесто вымешиваем утром.</p><span class="price num">690 ₽</span></article>
@@ -800,13 +807,14 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
         <article class="dish" data-img="assets/img/d-steak.webp"><img class="th" src="assets/img/d-steak.webp" alt="" width="720" height="900" loading="lazy" decoding="async"><h3>Стейк на чугуне</h3><p>Говядина зернового откорма, 300 г, соус из запечённого чеснока.</p><span class="price num">2 450 ₽</span></article>
         <article class="dish" data-img="assets/img/d-cake.webp"><img class="th" src="assets/img/d-cake.webp" alt="" width="720" height="900" loading="lazy" decoding="async"><h3>Баскский чизкейк</h3><p>Запекаем до тёмной корочки, внутри он остаётся почти жидким.</p><span class="price num">520 ₽</span></article>
       </div>
+      <figure class="menu-photo" id="menuPhoto" aria-hidden="true"><figcaption id="menuCap"></figcaption></figure>
+      </div>
     </div>
   </section>
-  <div class="peek" id="peek" aria-hidden="true"></div>
 
   <section class="sec" id="kitchen" aria-labelledby="k-title" style="padding-top:2rem">
     <div class="wrap kitchen">
-      <figure class="rv"><img src="assets/img/kitchen.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen.webp 1100w" sizes="(max-width: 899px) 100vw, 50vw" width="1100" height="1100" loading="lazy" decoding="async" alt="Повар у открытого огня в дровяной печи"></figure>
+      <figure class="rv"><img src="assets/img/kitchen.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen.webp 1100w" sizes="(max-width: 899px) 100vw, 50vw" width="1100" height="1100" loading="lazy" decoding="async" alt="Пекарь отправляет лепёшку в дровяную печь в зале"></figure>
       <div>
         <h2 id="k-title" data-split>Кухня у всех на виду</h2>
         <p class="sub rv">Печь стоит в центре зала. Садитесь за стойку у огня и смотрите, как готовят ваш заказ.</p>
@@ -851,7 +859,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
         </ul>
       </div>
       <form class="form rv" id="bronForm" novalidate>
-        <div class="form-fields" style="display:grid;gap:1.6rem">
+        <div class="form-fields">
           <div class="f"><label for="fPlace">Ресторан</label><select id="fPlace" name="place"></select></div>
           <div class="f"><span class="lab" id="dayLab">Дата</span><div class="chips" id="days" role="group" aria-labelledby="dayLab"></div></div>
           <div class="f"><span class="lab" id="timeLab">Время</span><div class="chips" id="times" role="group" aria-labelledby="timeLab"></div><p class="msg" id="timeMsg" aria-live="polite"></p></div>
@@ -871,6 +879,7 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
           <h3>Стол ваш</h3>
           <dl id="okList"></dl>
           <p>Это демо-сайт, поэтому бронь никуда не ушла. В рабочей версии подтверждение приходит в SMS или Telegram, а заявка падает в систему бронирования ресторана.</p>
+          <button type="button" class="btn btn-ghost" id="newBron" style="margin-top:1.5rem">Забронировать ещё</button>
         </div>
       </form>
     </div>
@@ -890,12 +899,12 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
   <section class="sec" id="faq" aria-labelledby="faq-title">
     <div class="wrap faq">
       <div class="faq-intro"><h2 id="faq-title" data-split>Вопросы гостей</h2></div>
-      <div class="rv">
-        <details class="qa"><summary>Нужна ли предоплата при бронировании?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Нет, для компаний до 12 человек бронь бесплатная. Держим стол 20 минут после назначенного времени.</p></details>
-        <details class="qa"><summary>Можно прийти с детьми?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Да. Есть детские стулья и детское меню: паста, котлеты из печи и блины.</p></details>
-        <details class="qa"><summary>Есть ли вегетарианские блюда?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Около трети меню: хлеб, лепёшки, овощи с углей, сыры. Скажите официанту об аллергии, и кухня это учтёт.</p></details>
-        <details class="qa"><summary>Работает ли доставка?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Да, через Яндекс Еду из всех восьми ресторанов. Хлеб и выпечку можно забрать навынос с девяти утра.</p></details>
-        <details class="qa"><summary>Где парковаться?<span class="pm" aria-hidden="true"></span></summary><p class="ans">У ресторанов в центре парковка городская. На Соколе и в Сити есть свои места для гостей.</p></details>
+      <div class="qa-list rv">
+        <article class="qa"><h3>Нужна ли предоплата при бронировании?</h3><p class="ans">Нет, для компаний до 12 человек бронь бесплатная. Держим стол 20 минут после назначенного времени.</p></article>
+        <article class="qa"><h3>Можно прийти с детьми?</h3><p class="ans">Да. Есть детские стулья и детское меню: паста, котлеты из печи и блины.</p></article>
+        <article class="qa"><h3>Есть ли вегетарианские блюда?</h3><p class="ans">Около трети меню: хлеб, лепёшки, овощи с углей, сыры. Скажите официанту об аллергии, и кухня это учтёт.</p></article>
+        <article class="qa"><h3>Работает ли доставка?</h3><p class="ans">Да, через Яндекс Еду из всех восьми ресторанов. Хлеб и выпечку можно забрать навынос с девяти утра.</p></article>
+        <article class="qa"><h3>Где парковаться?</h3><p class="ans">У ресторанов в центре парковка городская. На Соколе и в Сити есть свои места для гостей.</p></article>
       </div>
     </div>
   </section>
