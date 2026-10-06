@@ -289,8 +289,8 @@ $('#bronForm').addEventListener('submit', e => {
   e.preventDefault();
   const okTime = time !== null || guests > 12;
   $('#timeMsg').textContent = okTime ? '' : 'Выберите время';
-  const okName = check('fName', $('#fName').value.trim().length > 1, 'Как к вам обращаться?');
-  const okPhone = check('fPhone', phone.value.replace(/\D/g, '').length === 11, 'Нужен номер из 11 цифр');
+  const okName = check('fName', $('#fName').value.trim().length > 1, 'На чьё имя держать стол?');
+  const okPhone = check('fPhone', phone.value.replace(/\D/g, '').length === 11, 'Номер нужен целиком, чтобы прислать подтверждение');
   const okConsent = check('fConsent', $('#fConsent').checked, 'Без согласия мы не сможем подтвердить бронь');
   if (!(okTime && okName && okPhone && okConsent)) {
     const first = !okTime ? $('#times .chip:not(:disabled)') : $('[aria-invalid="true"]');
