@@ -873,12 +873,13 @@ html:not(.js) .ln > span, html:not(.js) .rv{transform:none; opacity:1}
           </div>
           <div class="f"><label for="fNote">Пожелания <span>необязательно</span></label><textarea id="fNote" name="note" placeholder="Например, стол у окна или детский стул"></textarea></div>
           <div><label class="check"><input type="checkbox" id="fConsent" required><span>Даю <a href="soglasie.html">согласие на обработку персональных данных</a> для подтверждения брони</span></label><p class="msg" id="fConsentMsg" aria-live="polite" style="font-size:.85rem;color:#ff8a80;margin-top:.35rem;min-height:1.1rem"></p></div>
+          <p style="font-size:.85rem;color:var(--ash-2)">Демо: бронь попадёт в открытую демо-CRM, её видят все посетители. Номер можно вымышленный.</p>
           <button class="btn btn-ember" type="submit">Забронировать стол <span class="arr" aria-hidden="true">→</span></button>
         </div>
         <div class="form-ok" role="status" tabindex="-1" id="formOk">
           <h3>Стол ваш</h3>
           <dl id="okList"></dl>
-          <p>Это демо-сайт, поэтому бронь никуда не ушла. В рабочей версии подтверждение приходит в SMS или Telegram, а заявка падает в систему бронирования ресторана.</p>
+          <p>Бронь ушла в демо-CRM: <a href="https://ai-crm-demo.onrender.com" target="_blank" rel="noopener">откройте её</a>, войдите как владелец — заявка уже в списке. В рабочей версии гостю приходит подтверждение в SMS или Telegram.</p>
           <button type="button" class="btn btn-ghost" id="newBron" style="margin-top:1.5rem">Забронировать ещё</button>
         </div>
       </form>

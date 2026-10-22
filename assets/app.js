@@ -285,6 +285,7 @@ function check(id, ok, text) {
   $('#' + id + 'Msg').textContent = ok ? '' : text;
   return ok;
 }
+const CRM = 'https://ai-crm-demo.onrender.com';
 $('#bronForm').addEventListener('submit', e => {
   e.preventDefault();
   const okTime = time !== null || guests > 12;
@@ -300,6 +301,19 @@ $('#bronForm').addEventListener('submit', e => {
   const p = PLACES[+fPlace.value], d = dateFor(day);
   const rows = [['Ресторан', `${p.name}, м. ${p.metro}`], ['Дата', `${d.getDate()} ${MON[d.getMonth()]}, ${DAY[d.getDay()]}`], ['Время', time !== null ? hm(time) : 'обсудим по телефону'], ['Гостей', guests], ['Имя', $('#fName').value.trim()]];
   $('#okList').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  const note = $('#fNote').value.trim();
+  // Бронь уходит в демо-CRM фоном: спящий бесплатный сервер просыпается до минуты, гость ждать не должен.
+  fetch(CRM + '/api/public/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: $('#fName').value.trim(),
+      contact: phone.value,
+      text: 'Бронь стола: ' + rows.slice(0, 4).map(([k, v]) => `${k} — ${v}`).join('; ') + (note ? `. Пожелания: ${note}` : ''),
+      utm_source: 'pech',
+      consent: true,
+    }),
+  }).catch(() => {});
   $('#bronForm').classList.add('sent');
   scrollTo({ top: $('#bronForm').getBoundingClientRect().top + scrollY - nav.offsetHeight - 16, behavior: reduce ? 'auto' : 'smooth' });
   $('#formOk').focus({ preventScroll: true });
